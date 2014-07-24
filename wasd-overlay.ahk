@@ -34,14 +34,14 @@ Loop, 9
 }
 
 ; Get a bitmap from the image
-bGround := Gdip_CreateBitmapFromFile(imgDir "base.png")
-btnQ := Gdip_CreateBitmapFromFile(imgDir "q.png")
-btnW := Gdip_CreateBitmapFromFile(imgDir "w.png")
-btnA := Gdip_CreateBitmapFromFile(imgDir "a.png")
-btnS := Gdip_CreateBitmapFromFile(imgDir "s.png")
-btnD := Gdip_CreateBitmapFromFile(imgDir "d.png")
-btnE := Gdip_CreateBitmapFromFile(imgDir "e.png")
-btnCtrl := Gdip_CreateBitmapFromFile(imgDir "ctrl.png")
+bGround :=  Gdip_CreateBitmapFromFile(imgDir "base.png")
+btnQ :=     Gdip_CreateBitmapFromFile(imgDir "q.png")
+btnW :=     Gdip_CreateBitmapFromFile(imgDir "w.png")
+btnA :=     Gdip_CreateBitmapFromFile(imgDir "a.png")
+btnS :=     Gdip_CreateBitmapFromFile(imgDir "s.png")
+btnD :=     Gdip_CreateBitmapFromFile(imgDir "d.png")
+btnE :=     Gdip_CreateBitmapFromFile(imgDir "e.png")
+btnCtrl :=  Gdip_CreateBitmapFromFile(imgDir "ctrl.png")
 btnSpace := Gdip_CreateBitmapFromFile(imgDir "space.png")
 
 ; Check to ensure we actually got a bitmap from the file, in case the file was corrupt or some other error occured
@@ -80,23 +80,23 @@ Return
 
 
 
-~*q::ShowPress(btnQ, 2)
-~*w::ShowPress(btnW, 3)
-~*e::ShowPress(btnE, 4)
-~*a::ShowPress(btnA, 5)
-~*s::ShowPress(btnS, 6)
-~*d::ShowPress(btnD, 7)
-~*LCtrl::ShowPress(btnCtrl, 8)
-~*Space::ShowPress(btnSpace, 9)
+~*q::     ShowPress(btnQ, 2)
+~*w::     ShowPress(btnW, 3)
+~*e::     ShowPress(btnE, 4)
+~*a::     ShowPress(btnA, 5)
+~*s::     ShowPress(btnS, 6)
+~*d::     ShowPress(btnD, 7)
+~*LCtrl:: ShowPress(btnCtrl, 8)
+~*Space:: ShowPress(btnSpace, 9)
 
-~q Up::Gui, 2:  Cancel
-~w Up::Gui, 3:  Cancel
-~e Up::Gui, 4:  Cancel
-~a Up::Gui, 5:  Cancel
-~s Up::Gui, 6:  Cancel
-~d Up::Gui, 7:  Cancel
-~LCtrl Up::Gui, 8:  Cancel
-~Space Up::Gui, 9:  Cancel
+~q Up::     Gui, 2:  Cancel
+~w Up::     Gui, 3:  Cancel
+~e Up::     Gui, 4:  Cancel
+~a Up::     Gui, 5:  Cancel
+~s Up::     Gui, 6:  Cancel
+~d Up::     Gui, 7:  Cancel
+~LCtrl Up:: Gui, 8:  Cancel
+~Space Up:: Gui, 9:  Cancel
 
 ShowPress(img, guiNum)
 {
