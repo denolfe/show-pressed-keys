@@ -19,4 +19,5 @@ Preview of it in action (bottom right of screen):
 
 ## To Do
 
+- Add scrollwheel up and down to mouse overlay
 - Implement Ini loading for settings
