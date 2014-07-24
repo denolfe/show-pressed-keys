@@ -48,6 +48,7 @@ btnLeft := Gdip_CreateBitmapFromFile(imgDir "left.png")
 btnRight := Gdip_CreateBitmapFromFile(imgDir "right.png")
 btnWheelUp := Gdip_CreateBitmapFromFile(imgDir "wheelup.png")
 btnWheelDown := Gdip_CreateBitmapFromFile(imgDir "wheeldown.png")
+btnM3 := Gdip_CreateBitmapFromFile(imgDir "m3.png")
 btnM4 := Gdip_CreateBitmapFromFile(imgDir "m4.png")
 btnM5 := Gdip_CreateBitmapFromFile(imgDir "m5.png")
 
@@ -128,6 +129,7 @@ Return
 ~RButton::		ShowPress(btnRight)
 ~WheelUp::		SetTimer, WheelUp, -1
 ~WheelDown::	SetTimer, WheelDown, -1
+~MButton::		ShowPress(btnM3)
 ~XButton1::		ShowPress(btnM4)
 ~XButton2::		ShowPress(btnM5)
 
@@ -135,6 +137,7 @@ Return
 ~RButton Up::
 ~WheelUp Up::
 ~WheelDown Up::
+~MButton Up::
 ~XButton1 Up::
 ~XButton2 Up::
 		Gui, 2: Cancel
