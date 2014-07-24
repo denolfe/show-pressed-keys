@@ -14,8 +14,8 @@ SetBatchLines, -1
 
 Mouse := "g400"
 imgDir := "img/" Mouse "/"
-posX := 0
-posY := 0
+posX := 4230
+posY := -220
 
 ; Start gdi+
 If !pToken := Gdip_Startup()
@@ -43,6 +43,8 @@ hwnd2 := WinExist()
 pBitmap := Gdip_CreateBitmapFromFile(imgDir "base.png")
 btnLeft := Gdip_CreateBitmapFromFile(imgDir "left.png")
 btnRight := Gdip_CreateBitmapFromFile(imgDir "right.png")
+btnWheelUp := Gdip_CreateBitmapFromFile(imgDir "wheelup.png")
+btnWheelDown := Gdip_CreateBitmapFromFile(imgDir "wheeldown.png")
 btnM4 := Gdip_CreateBitmapFromFile(imgDir "m4.png")
 btnM5 := Gdip_CreateBitmapFromFile(imgDir "m5.png")
 
@@ -121,15 +123,34 @@ Return
 
 ~LButton::ShowPress(btnLeft)
 ~RButton::ShowPress(btnRight)
+~WheelUp::SetTimer, WheelUp, -1
+~WheelDown::SetTimer, WheelDown, -1
 ~XButton1::ShowPress(btnM4)
 ~XButton2::ShowPress(btnM5)
 
-~XButton1 Up::
-~RButton Up::
 ~LButton Up::
+~RButton Up::
+~WheelUp Up::
+~WheelDown Up::
+~XButton1 Up::
 ~XButton2 Up::
 		Gui, 2: Cancel
 	Return
+
+WheelUp:
+	ShowScroll(btnWheelUp)
+	Return
+
+WheelDown:
+	ShowScroll(btnWheelDown)
+	Return
+
+ShowScroll(img)
+{
+	ShowPress(img)
+	Sleep 75
+	Gui, 2: Cancel
+}
 
 ShowPress(img)
 {
