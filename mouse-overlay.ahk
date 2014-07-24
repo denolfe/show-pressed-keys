@@ -12,10 +12,19 @@ SetBatchLines, -1
 ; Uncomment if Gdip.ahk is not in your standard library
 ;#Include, Gdip.ahk
 
-Mouse := "g400"
-imgDir := "img/" Mouse "/"
-posX := 4230
-posY := -220
+; Menu
+Menu, Tray, NoStandard
+Menu, Tray, Add, Open Settings, OpenSettings
+Menu, Tray, Add, Reload Settings, LoadSettings
+Menu, Tray, Add, Save Position, SavePosition
+Menu, Tray, Add, Reload Script, Reload
+Menu, Tray, Add
+Menu, Tray, Add, Exit, Exit
+
+settings_file := "settings.ini"
+Gosub, LoadSettings
+
+imgDir := "img/" model "/"
 
 ; Start gdi+
 If !pToken := Gdip_Startup()
@@ -121,12 +130,12 @@ ClearObjects:
 Return
 
 
-~LButton::ShowPress(btnLeft)
-~RButton::ShowPress(btnRight)
-~WheelUp::SetTimer, WheelUp, -1
-~WheelDown::SetTimer, WheelDown, -1
-~XButton1::ShowPress(btnM4)
-~XButton2::ShowPress(btnM5)
+~LButton::		ShowPress(btnLeft)
+~RButton::		ShowPress(btnRight)
+~WheelUp::		SetTimer, WheelUp, -1
+~WheelDown::	SetTimer, WheelDown, -1
+~XButton1::		ShowPress(btnM4)
+~XButton2::		ShowPress(btnM5)
 
 ~LButton Up::
 ~RButton Up::
@@ -194,3 +203,37 @@ WM_LBUTTONDOWN()
 {
 	PostMessage, 0xA1, 2
 }
+
+SavePosition:
+	WinGetPos, winX, winY, , , mouse-overlay.ahk
+	path := ini_load(ini, settings_file)
+	ini_replaceValue(ini, "Mouse", "posX", winX)
+	ini_replaceValue(ini, "Mouse", "posY", winY)
+	posX := winX
+	posY := winY
+	ini_save(ini, settings_file)
+	msgbox, Position Saved.
+	Return
+
+Reload:
+	Reload
+	Return
+
+OpenSettings:
+	Run % settings_file
+	Return
+
+LoadSettings:
+	If FileExist(settings_file)
+	{
+		path := ini_load(ini, settings_file)
+		model := ini_getValue(ini, "Mouse", "model")
+		posX := ini_getValue(ini, "Mouse", "posX")
+		posY := ini_getValue(ini, "Mouse", "posY")
+	}
+	Else
+	{
+		Msgbox, settings.ini not found!
+		ExitApp
+	}
+	Return

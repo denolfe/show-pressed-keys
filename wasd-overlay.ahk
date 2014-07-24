@@ -12,6 +12,15 @@ SetBatchLines, -1
 ; Uncomment if Gdip.ahk is not in your standard library
 ;#Include, Gdip.ahk
 
+; Menu
+Menu, Tray, NoStandard
+Menu, Tray, Add, Open Settings, OpenSettings
+Menu, Tray, Add, Reload Settings, LoadSettings
+Menu, Tray, Add, Save Position, SavePosition
+Menu, Tray, Add, Reload Script, Reload
+Menu, Tray, Add
+Menu, Tray, Add, Exit, Exit
+
 settings_file := "settings.ini"
 Gosub, LoadSettings
 
@@ -141,24 +150,20 @@ WM_LBUTTONDOWN()
 	PostMessage, 0xA1, 2
 }
 
-WM_LBUTTONDBLCLK()
-{
-	global
-	WinGetPos, winX, winY, , , A
-	path := ini_load(ini, "settings.ini")
-	ini_replaceValue(ini, "Wasd", "posX", winX)
-	ini_replaceValue(ini, "Wasd", "posY", winY)
+SavePosition:
+	WinGetPos, winX, winY, , , wasd-overlay.ahk
+	path := ini_load(ini, settings_file)
+	ini_replaceValue(ini, "Mouse", "posX", winX)
+	ini_replaceValue(ini, "Mouse", "posY", winY)
 	posX := winX
 	posY := winY
-	ini_save(ini, "settings.ini")
+	ini_save(ini, settings_file)
 	msgbox, Position Saved.
-}
+	Return
 
-IsWinUnderMouse(hwnd) {
-	MouseGetPos,,, hWinUnderMouse
-	if (hwnd = hWinUnderMouse)
-	return 1
-}
+Reload:
+	Reload
+	Return
 
 OpenSettings:
 	Run % settings_file
