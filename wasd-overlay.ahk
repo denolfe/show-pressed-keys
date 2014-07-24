@@ -12,9 +12,8 @@ SetBatchLines, -1
 ; Uncomment if Gdip.ahk is not in your standard library
 ;#Include, Gdip.ahk
 
-imgDir := "img/wasd/"
-posX := 0
-posY := 0
+settings_file := "settings.ini"
+Gosub, LoadSettings
 
 ; Start gdi+
 If !pToken := Gdip_Startup()
@@ -127,6 +126,7 @@ ShowPress(img, guiNum)
 	UpdateLayeredWindow(hwnd%GuiNum%, hdc, posX, posY, Width//2, Height//2)
 
 	OnMessage(0x201, "WM_LBUTTONDOWN")
+	OnMessage(0x203, "WM_LBUTTONDBLCLK")
 
 	Gosub, ClearObjects
 
@@ -140,3 +140,41 @@ WM_LBUTTONDOWN()
 {
 	PostMessage, 0xA1, 2
 }
+
+WM_LBUTTONDBLCLK()
+{
+	global
+	WinGetPos, winX, winY, , , A
+	path := ini_load(ini, "settings.ini")
+	ini_replaceValue(ini, "Wasd", "posX", winX)
+	ini_replaceValue(ini, "Wasd", "posY", winY)
+	posX := winX
+	posY := winY
+	ini_save(ini, "settings.ini")
+	msgbox, Position Saved.
+}
+
+IsWinUnderMouse(hwnd) {
+	MouseGetPos,,, hWinUnderMouse
+	if (hwnd = hWinUnderMouse)
+	return 1
+}
+
+OpenSettings:
+	Run % settings_file
+	Return
+
+LoadSettings:
+	If FileExist(settings_file)
+	{
+		path := ini_load(ini, settings_file)
+		imgDir := ini_getValue(ini, Wasd, "imgDir")
+		posX := ini_getValue(ini, Wasd, "posX")
+		posY := ini_getValue(ini, Wasd, "posY")
+	}
+	Else
+	{
+		Msgbox, settings.ini not found!
+		ExitApp
+	}
+	Return
