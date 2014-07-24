@@ -13,11 +13,17 @@ Preview of it in action (bottom right of screen):
 
 ## Usage
 
-1. Modify `posX` and `posY` as needed
-2. Run `wasd-overlay.ahk` and/or `mouse-overlay.ahk`
-3. In OBS, use Screen Capture and Chromakey on the green background
+1. Start `wasd-overlay.ahk` and/or `mouse-overlay.ahk`
+2. Move Gui to desired location
+3. Select 'Save Position' in Tray Menu
+4. In OBS, use Screen Capture and Chromakey on the green background
+
+## Skins
+
+You can create your own mouse skin by creating the necessary files. Take a look at the images in `img/g400` as well as the psd template.
+
+Put all of your new files in a folder ie. `deathadder` and change model in settings.ini to the folder name.
 
 ## To Do
 
-- Add scrollwheel up and down to mouse overlay
-- Implement Ini loading for settings
+*None*
