@@ -1,10 +1,4 @@
-﻿; gdi+ ahk tutorial 3 written by tic (Tariq Porter)
-; Requires Gdip.ahk either in your Lib folder as standard library or using #Include
-;
-; Tutorial to take make a gui from an existing image on disk
-; For the example we will use png as it can handle transparencies. The image will also be halved in size
-
-#SingleInstance, Force
+﻿#SingleInstance, Force
 SetWorkingDir %A_ScriptDir%
 #NoEnv
 SetBatchLines, -1
