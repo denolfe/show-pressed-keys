@@ -15,6 +15,9 @@ Menu, Tray, Add, Reload Script, Reload
 Menu, Tray, Add
 Menu, Tray, Add, Exit, Exit
 
+If !FileExist("settings.ini")
+	msgbox, Missing settings.ini
+
 settings_file := "settings.ini"
 Gosub, LoadSettings
 
@@ -38,19 +41,18 @@ Gui, 2: -Caption +E0x80000 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs
 Gui, 2: Show, NA
 hwnd2 := WinExist()
 
-; If the image we want to work with does not exist on disk, then download it...
-; If !FileExist("g400.png")
-; 	msgbox, can't find the file
+If !FileExist(imgDir "base.png")
+	msgbox, Can't find base.png!
 
-; Get a bitmap from the image
-pBitmap := Gdip_CreateBitmapFromFile(imgDir "base.png")
-btnLeft := Gdip_CreateBitmapFromFile(imgDir "left.png")
-btnRight := Gdip_CreateBitmapFromFile(imgDir "right.png")
-btnWheelUp := Gdip_CreateBitmapFromFile(imgDir "wheelup.png")
+; Get bitmaps from the images
+pBitmap :=      Gdip_CreateBitmapFromFile(imgDir "base.png")
+btnLeft :=      Gdip_CreateBitmapFromFile(imgDir "left.png")
+btnRight :=     Gdip_CreateBitmapFromFile(imgDir "right.png")
+btnWheelUp :=   Gdip_CreateBitmapFromFile(imgDir "wheelup.png")
 btnWheelDown := Gdip_CreateBitmapFromFile(imgDir "wheeldown.png")
-btnM3 := Gdip_CreateBitmapFromFile(imgDir "m3.png")
-btnM4 := Gdip_CreateBitmapFromFile(imgDir "m4.png")
-btnM5 := Gdip_CreateBitmapFromFile(imgDir "m5.png")
+btnM3 :=        Gdip_CreateBitmapFromFile(imgDir "m3.png")
+btnM4 :=        Gdip_CreateBitmapFromFile(imgDir "m4.png")
+btnM5 :=        Gdip_CreateBitmapFromFile(imgDir "m5.png")
 
 ; Check to ensure we actually got a bitmap from the file, in case the file was corrupt or some other error occured
 If !pBitmap
