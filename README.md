@@ -7,6 +7,8 @@ This project contains 2 scripts:
 - wasd-overlay.ahk - Shows WASD, Ctrl, Space, Q, and E in overlay
 - mouse-overlay.ahk - Highlights the pressed key on an image of a mouse (default is a Logitech G400)
 
+![Image](img/wasd-preview.png)&nbsp;&nbsp;![Image](img/mouse-preview.png)
+
 Preview of it in action (bottom right of screen):
 
 [![Show Pressed Keys](http://img.youtube.com/vi/wKHAsfyKZ-M/0.jpg)](https://www.youtube.com/watch?v=wKHAsfyKZ-M)
