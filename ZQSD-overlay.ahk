@@ -37,9 +37,9 @@ Loop, 9
 
 ; Get a bitmap from the image
 bGround :=  Gdip_CreateBitmapFromFile(imgDir "base.png")
-btnQ :=     Gdip_CreateBitmapFromFile(imgDir "q.png")
-btnW :=     Gdip_CreateBitmapFromFile(imgDir "z.png")
 btnA :=     Gdip_CreateBitmapFromFile(imgDir "a.png")
+btnZ :=     Gdip_CreateBitmapFromFile(imgDir "z.png")
+btnQ :=     Gdip_CreateBitmapFromFile(imgDir "q.png")
 btnS :=     Gdip_CreateBitmapFromFile(imgDir "s.png")
 btnD :=     Gdip_CreateBitmapFromFile(imgDir "d.png")
 btnE :=     Gdip_CreateBitmapFromFile(imgDir "e.png")
@@ -83,7 +83,7 @@ Return
 
 
 ~*q::     ShowPress(btnQ, 2)
-~*z::     ShowPress(btnW, 3)
+~*z::     ShowPress(btnZ, 3)
 ~*e::     ShowPress(btnE, 4)
 ~*a::     ShowPress(btnA, 5)
 ~*s::     ShowPress(btnS, 6)
@@ -147,8 +147,8 @@ WM_LBUTTONDOWN()
 SavePosition:
 	WinGetPos, winX, winY, , , wasd-overlay.ahk
 	path := ini_load(ini, settings_file)
-	ini_replaceValue(ini, "Wasd", "posX", winX)
-	ini_replaceValue(ini, "Wasd", "posY", winY)
+	ini_replaceValue(ini, "zqsd", "posX", winX)
+	ini_replaceValue(ini, "zqsd", "posY", winY)
 	posX := winX
 	posY := winY
 	ini_save(ini, settings_file)
